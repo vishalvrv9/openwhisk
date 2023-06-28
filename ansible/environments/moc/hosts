@@ -1,37 +1,18 @@
-;ansible all -i environments/$ENVIRONMENT -u hare1039 -a "/bin/echo hello"
-;192.168.2.18
-;192.168.2.19
-;192.168.2.20
-;192.168.0.48  zookeeper-1
-;192.168.0.241 zookeeper-2
-;192.168.0.139 zookeeper-3
-;
-;192.168.0.135 proxy-1
-;192.168.0.215 proxy-2
-;192.168.0.65  proxy-3
-;
-;192.168.0.224 ow-ctrl
-
-
-; the first parameter in a host is the inventory_hostname
-
-; used for local actions only
-;ansible ansible_connection=ssh
 ansible ansible_connection=local
 
 [edge]
-192.168.0.224         ansible_host=192.168.0.224 ansible_connection=local
+<ENTER_EDGE_IP>         ansible_host=<ENTER_EDGE_IP> ansible_connection=local
 
 [controllers]
-controller0           ansible_host=192.168.0.224 ansible_connection=local
+controller0           ansible_host=<ENTER_CONTROLLER_IP> ansible_connection=local
 
 [kafkas]
-kafka0                ansible_host=192.168.0.48  ansible_connection=ssh ansible_user=ubuntu
-kafka1                ansible_host=192.168.0.241 ansible_connection=ssh ansible_user=ubuntu
-kafka2                ansible_host=192.168.0.139 ansible_connection=ssh ansible_user=ubuntu
+kafka0                ansible_host=<ENTER_KAFKA_IP>  ansible_connection=ssh ansible_user=ubuntu
+kafka1                ansible_host=<ENTER_KAFKA_IP> ansible_connection=ssh ansible_user=ubuntu
+kafka2                ansible_host=<ENTER_KAFKA_IP> ansible_connection=ssh ansible_user=ubuntu
 
 [schedulers]
-scheduler0            ansible_host=192.168.0.224 ansible_connection=local
+scheduler0            ansible_host=<ENTER_SCHEDULER_IP> ansible_connection=local
 
 [zookeepers:children]
 kafkas
@@ -43,30 +24,18 @@ db
 invoker0              ansible_host=ow-invoker-1  ansible_connection=ssh ansible_user=ubuntu
 invoker1              ansible_host=ow-invoker-2  ansible_connection=ssh ansible_user=ubuntu
 invoker2              ansible_host=ow-invoker-3  ansible_connection=ssh ansible_user=ubuntu
-invoker3              ansible_host=ow-invoker-4  ansible_connection=ssh ansible_user=ubuntu
-invoker4              ansible_host=ow-invoker-5  ansible_connection=ssh ansible_user=ubuntu
-invoker5              ansible_host=ow-invoker-6  ansible_connection=ssh ansible_user=ubuntu
-invoker6              ansible_host=ow-invoker-7  ansible_connection=ssh ansible_user=ubuntu
-invoker7              ansible_host=ow-invoker-8  ansible_connection=ssh ansible_user=ubuntu
-invoker8              ansible_host=ow-invoker-9  ansible_connection=ssh ansible_user=ubuntu
-invoker9              ansible_host=ow-invoker-10 ansible_connection=ssh ansible_user=ubuntu
-invoker10             ansible_host=ow-invoker-11 ansible_connection=ssh ansible_user=ubuntu
-invoker11             ansible_host=ow-invoker-12 ansible_connection=ssh ansible_user=ubuntu
-invoker12             ansible_host=ow-invoker-13 ansible_connection=ssh ansible_user=ubuntu
-invoker13             ansible_host=ow-invoker-14 ansible_connection=ssh ansible_user=ubuntu
-invoker14             ansible_host=ow-invoker-15 ansible_connection=ssh ansible_user=ubuntu
-invoker15             ansible_host=ow-invoker-16 ansible_connection=ssh ansible_user=ubuntu
+
 
 
 ; db group is only used if db.provider is CouchDB
 [db]
-192.168.0.224                  ansible_host=192.168.0.224 ansible_connection=local
+<ENTER_COUCHDB_IP>                  ansible_host=<ENTER_COUCHDB_IP> ansible_connection=local
 
 [redis]
-192.168.0.224        ansible_host=192.168.0.224 ansible_connection=local
+<ENTER_REDIS_IP>        ansible_host=<ENTER_REDIS_IP> ansible_connection=local
 
 [apigateway]
-192.168.0.224        ansible_host=192.168.0.224 ansible_connection=local
+<ENTER_APIGATEWAY_IP>        ansible_host=<ENTER_APIGATEWAY_IP> ansible_connection=local
 
 [etcd]
-192.168.0.224        ansible_host=192.168.0.224 ansible_connection=local
+<ENTER_ETCD_IP>        ansible_host=<ENTER_ETCD_IP> ansible_connection=local
