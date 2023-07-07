@@ -13,18 +13,20 @@ pip3 install docker
 
 
 
-echo --------CLONING-FORKED-OPENWHISK--------
+#echo --------CLONING-FORKED-OPENWHISK--------
 
-git clone https://github.com/vishalvrv9/openwhisk.git
+#git clone https://github.com/vishalvrv9/openwhisk.git
 
 echo ----------RUNNNING-GRADLE-BUILD--------
-cd openwhisk
+#cd openwhisk
 echo --------CURRENT DIR------
 echo $PWD
 $USE_SUDO ./gradlew distDocker
 cd $PWD/ansible
 chmod +x transfer_images.sh
 ./transfer_images.sh;
+
+eval $(ssh-agent)
 
 echo --------RUNNING-ANSIBLE-PLAYBOOK--------
 $USE_SUDO ansible-playbook -i environments/$ENVIRONMENT -u ubuntu setup.yml
